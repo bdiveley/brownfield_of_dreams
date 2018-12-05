@@ -3,6 +3,7 @@ class UserFacade
   def initialize(data)
     @user = data
     @_search_repo_result = nil
+    @_search_follower_result = nil
   end
 
   def first_name
@@ -25,11 +26,23 @@ class UserFacade
     end
   end
 
+  def followers
+    if user.token
+      search_follower_result.map do |github_user|
+        GitHubUser.new(github_user)
+      end 
+    end
+  end
+
   private
   attr_reader :user
 
   def search_repo_result
       @_search_repo_result ||= service.repo_list
+  end
+
+  def search_follower_result
+    @_search_follower_result ||= service.follower_list
   end
 
   def service

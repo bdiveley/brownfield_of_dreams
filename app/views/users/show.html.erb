@@ -10,11 +10,19 @@
   <section>
     <h1>Bookmarked Segments</h1>
     <% if @facade.repos %>
-      <h1>Github</h1>
 
+      <h1>Github</h1>
       <ul class="github_repos">
         <% @facade.repos.each do |repo| %>
           <li ><a href="<%=repo.html_url%>" class="name"><%= repo.name %></a></li>
+        <% end %>
+      </ul>
+    <% end %>
+    <% if @facade.followers %>
+      <h1>Followers</h1>
+      <ul class="followers">
+        <% @facade.followers.each do |follower| %>
+          <li ><a href="<%=follower.html_url%>" class="login"><%= follower.login %></a></li>
         <% end %>
       </ul>
     <% end %>
