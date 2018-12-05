@@ -20,7 +20,7 @@ feature'Register user' do
     end
   end
 
-  scenario '2 users with different keys' do
+  scenario '2 users with different keys sees different repos' do
     stub_user_two_github_api_call
 
     user_1 = create(:user, token: ENV['user_two_Github_Token'])
@@ -30,8 +30,14 @@ feature'Register user' do
 
     visit '/dashboard'
 
-    within(first(".name")) do
-      info_user_1 = page.find('.name')
-    end
+    repo_1 = all(".github_repos")[0].text
+
+    stub_github_api_call
+    
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user_1)
+
+    visit '/dashboard'
+
+    expect(all(".github_repos")[0].text).to_not eq(repo_1)
   end
 end

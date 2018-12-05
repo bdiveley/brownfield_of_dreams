@@ -1,8 +1,20 @@
 class UserFacade
 
   def initialize(data)
-    @token = data.token
+    @user = data
     @_search_repo_result = nil
+  end
+
+  def first_name
+    user.first_name
+  end
+
+  def last_name
+    user.last_name
+  end
+
+  def email
+    user.email
   end
 
   def repos
@@ -12,12 +24,14 @@ class UserFacade
   end
 
   private
+  attr_reader :user
 
   def search_repo_result
     @_search_repo_result ||= service.repo_list
   end
+
   def service
-    GitHubService.new({token: @token})
+    GitHubService.new({token: user.token})
   end
 
 end
