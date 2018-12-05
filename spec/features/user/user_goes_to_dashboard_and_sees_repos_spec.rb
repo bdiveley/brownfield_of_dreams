@@ -19,4 +19,19 @@ feature'Register user' do
       expect(page).to have_link
     end
   end
+
+  scenario '2 users with different keys' do
+    stub_user_two_github_api_call
+
+    user_1 = create(:user, token: ENV['user_two_Github_Token'])
+    user_2 = create(:user)
+
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user_2)
+
+    visit '/dashboard'
+
+    within(first(".name")) do
+      info_user_1 = page.find('.name')
+    end
+  end
 end
