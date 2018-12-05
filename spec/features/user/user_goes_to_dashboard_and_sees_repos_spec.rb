@@ -33,11 +33,23 @@ feature'Register user' do
     repo_1 = all(".github_repos")[0].text
 
     stub_github_api_call
-    
+
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user_1)
 
     visit '/dashboard'
 
     expect(all(".github_repos")[0].text).to_not eq(repo_1)
+  end
+
+  scenario 'user without github token doesnt sees github section ' do
+    
+    user = create(:user, token: nil)
+
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+
+    visit '/dashboard'
+
+    expect(page).to_not have_content("Github")
+
   end
 end

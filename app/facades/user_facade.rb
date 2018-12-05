@@ -18,8 +18,10 @@ class UserFacade
   end
 
   def repos
-    search_repo_result[0..4].map do |repo_data|
-      Repo.new(repo_data)
+    if user.token
+      search_repo_result[0..4].map do |repo_data|
+        Repo.new(repo_data)
+      end
     end
   end
 
@@ -27,7 +29,7 @@ class UserFacade
   attr_reader :user
 
   def search_repo_result
-    @_search_repo_result ||= service.repo_list
+      @_search_repo_result ||= service.repo_list
   end
 
   def service

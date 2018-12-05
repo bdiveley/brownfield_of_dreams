@@ -9,11 +9,14 @@
   </ul>
   <section>
     <h1>Bookmarked Segments</h1>
-    <h1>Github</h1>
-    <ul class="github_repos">
-      <% @facade.repos.each do |repo| %>
-        <li ><a href="<%=repo.html_url%>" class="name"><%= repo.name %></a></li>
-      <% end %>
-    </ul>
+    <% if @facade.repos %>
+      <h1>Github</h1>
+
+      <ul class="github_repos">
+        <% @facade.repos.each do |repo| %>
+          <li ><a href="<%=repo.html_url%>" class="name"><%= repo.name %></a></li>
+        <% end %>
+      </ul>
+    <% end %>
   </section>
 </section>
