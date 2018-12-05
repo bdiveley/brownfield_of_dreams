@@ -2,6 +2,8 @@ require 'rails_helper'
 
 describe 'vister can create an account', :js do
   it ' visits the home page' do
+    stub_github_api_call
+    
     email = 'jimbob@aol.com'
     first_name = 'Jim'
     last_name = 'Bob'
@@ -32,5 +34,6 @@ describe 'vister can create an account', :js do
     expect(page).to have_content(first_name)
     expect(page).to have_content(last_name)
     expect(page).to_not have_content('Sign In')
+
   end
 end
