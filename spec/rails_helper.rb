@@ -9,11 +9,14 @@ require 'vcr'
 require 'webmock/rspec'
 
 VCR.configure do |config|
+  config.allow_http_connections_when_no_cassette = true
   config.ignore_localhost = true
   config.cassette_library_dir = 'spec/cassettes'
   config.hook_into :webmock
   config.configure_rspec_metadata!
   config.filter_sensitive_data("<YOUTUBE_API_KEY>") { ENV['YOUTUBE_API_KEY'] }
+  config.filter_sensitive_data("<GITHUB_API_KEY>") { ENV['GitHub_Token'] }
+  config.filter_sensitive_data("<GITHUB_API_KEY>") { ENV['user_two_GitHub_Token'] }
 end
 
 
@@ -58,4 +61,9 @@ end
 def stub_user_two_github_api_call
   stub_request(:get, "https://api.github.com/user/repos").
   to_return(body: File.read("./spec/fixtures/user_two.json"))
-end 
+end
+
+def stub_github_users_api_call
+  stub_request(:get, "https://api.github.com/user/followers").
+  to_return(body: File.read("./spec/fixtures/github_user.json"))
+end
