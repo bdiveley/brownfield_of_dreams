@@ -49,3 +49,8 @@ RSpec.configure do |config|
 
   config.filter_rails_from_backtrace!
 end
+
+def stub_github_api_call
+  stub_request(:get, "https://api.github.com/user/repos").
+  to_return(body: File.read("./spec/fixtures/github.json"))
+end

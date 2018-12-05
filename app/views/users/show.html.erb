@@ -10,9 +10,9 @@
   <section>
     <h1>Bookmarked Segments</h1>
     <h1>Github</h1>
-    <ul id="github_repos">
+    <ul class="github_repos">
       <% @facade.repos.each do |repo| %>
-        <li id="name"><a href="<%=repo.url%>"><%= repo.name %></a></li>
+        <li ><a href="<%=repo.html_url%>" class="name"><%= repo.name %></a></li>
       <% end %>
     </ul>
   </section>
