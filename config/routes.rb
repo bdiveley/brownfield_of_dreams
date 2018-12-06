@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+
+  get '/github', to: redirect("/auth/github"), as: '/github'
+  get '/auth/github/callback', to: 'users#update'
+
   namespace :api do
     namespace :v1 do
       resources :tutorials, only:[:show, :index]
@@ -27,6 +31,7 @@ Rails.application.routes.draw do
   get '/login', to: "sessions#new"
   post '/login', to: "sessions#create"
   delete '/logout', to: "sessions#destroy"
+
 
   get '/dashboard', to: 'users#show'
   get '/about', to: 'about#show'
