@@ -4,6 +4,7 @@ class UserFacade
     @user = data
     @_search_repo_result = nil
     @_search_follower_result = nil
+    @_search_following_result = nil
   end
 
   def first_name
@@ -30,7 +31,15 @@ class UserFacade
     if user.token
       search_follower_result.map do |github_user|
         GitHubUser.new(github_user)
-      end 
+      end
+    end
+  end
+
+  def following
+    if user.token
+      search_following_result.map do |github_user|
+        GitHubUser.new(github_user)
+      end
     end
   end
 
@@ -43,6 +52,10 @@ class UserFacade
 
   def search_follower_result
     @_search_follower_result ||= service.follower_list
+  end
+
+  def search_following_result
+    @_search_following_result ||= service.following_list
   end
 
   def service
