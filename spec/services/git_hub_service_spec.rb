@@ -32,5 +32,18 @@ describe GitHubService do
         end
       end
     end
+
+    context "following_list" do
+      it "should return an array of hashes" do
+        VCR.use_cassette("github_following_cassette") do
+          service = GitHubService.new({token: "#{ENV["Github_Token"]} "})
+
+          expect(service.follower_list).to be_a(Array)
+          expect(service.follower_list.first).to be_a(Hash)
+          expect(service.follower_list.first).to have_key(:login)
+          expect(service.follower_list.first).to have_key(:html_url)
+        end
+      end
+    end
   end
 end
