@@ -23,7 +23,8 @@
       <h1>Followers</h1>
       <ul class="followers">
         <% @facade.followers.each do |follower| %>
-          <li ><a href="<%=follower.html_url%>" class="login"><%= follower.login %></a></li>
+        <li ><a href="<%=follower.html_url%>" class="login"><%= follower.login %></a>
+          (<%= link_to "Add Friend", friendship_path(:friend_id => follower), :method => :post %>)</li>
         <% end %>
       </ul>
     <% end %>

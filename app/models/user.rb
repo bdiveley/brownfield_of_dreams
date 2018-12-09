@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   has_many :user_videos
   has_many :videos, through: :user_videos
+  has_many :friendships
+  has_many :friends, through: :friendships
 
   validates :email, uniqueness: true, presence: true
   validates_presence_of :password, on: :create
@@ -10,7 +12,9 @@ class User < ApplicationRecord
 
   def find_or_create_from_auth_hash(user, auth_hash)
     token = auth_hash["credentials"]["token"]
+    github_id = auth_hash["extra"]["raw_info"]["id"]
     user.update(token: token)
+    user.update(github_id: github_id)
     user.save
   end
 end

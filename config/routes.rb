@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   post '/login', to: "sessions#create"
   delete '/logout', to: "sessions#destroy"
 
+  post '/friendship/:friend_id', to: "friendships#create", as: '/friendship'
 
   get '/dashboard', to: 'users#show'
   get '/about', to: 'about#show'
