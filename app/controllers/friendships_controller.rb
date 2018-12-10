@@ -1,7 +1,6 @@
 class FriendshipsController < ApplicationController
 
   def create
-    binding.pry
     friend = User.find_by(github_id: params[:friend_id])
     if friend === nil
       flash[:error] = "Cannot add friends with unlinked GitHub accounts"
