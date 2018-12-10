@@ -2,7 +2,8 @@ require 'rails_helper'
 
 describe 'User' do
   it 'can see an Add Link next to a github user on the dashboard only if the github user is in the db' do
-    stub_github_users_api_call
+    stub_github_followers_api_call
+    stub_github_following_api_call
 
     user = create(:user)
     follower = create(:user, github_id: 36523304)
@@ -21,7 +22,8 @@ describe 'User' do
     end
   end
   it 'can add a new friend by clicking on the Add Friend link' do
-    stub_github_users_api_call
+    stub_github_followers_api_call
+    stub_github_following_api_call
 
     user = create(:user)
     follower = create(:user, github_id: 36523304, first_name: "French", last_name: "Bulldog")
@@ -48,7 +50,8 @@ describe 'User' do
     end
   end
   it 'cannot add a new friend if the friend is not in the database' do
-    stub_github_users_api_call
+    stub_github_followers_api_call
+    stub_github_following_api_call
 
     user = create(:user)
 
