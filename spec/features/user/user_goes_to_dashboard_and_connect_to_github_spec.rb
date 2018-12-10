@@ -3,8 +3,8 @@ require 'rails_helper'
 feature'User' do
   scenario 'goes to dashboard and sees a button to connect with github' do
       stub_omniauth
-      stub_github_api_call
-      stub_github_users_api_call
+      # stub_github_api_call
+      # stub_github_users_api_call
 
       # As a user
       user = create(:user)
