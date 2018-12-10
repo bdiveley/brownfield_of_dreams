@@ -8,7 +8,7 @@ feature'User' do
     stub_github_following_api_call
 
     # As a user
-    user = create(:user)
+    user = create(:user, github_id: 36523304)
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
     # When I visit /dashboard
     visit dashboard_path
