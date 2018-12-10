@@ -10,9 +10,9 @@
   </ul>
   <section>
     <h1>Bookmarked Segments</h1>
-    <ul class="Bookmark">
+    <ul class="Bookmarks">
       <% @facade.bookmarks.each do |bookmark| %>
-        <li><%= bookmark.title %></li>
+        <li class="Bookmark"><%= bookmark.title %></li>
       <% end  %>
     </ul>
     <% if @facade.repos %>

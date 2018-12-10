@@ -10,10 +10,10 @@ feature"Users bookmarks" do
     follower = create(:user, github_id: 36523304)
     tutorial_1 = create(:tutorial)
     tutorial_2 = create(:tutorial)
-    video_1 = create(:video, tutorial: tutorial_1, position: 1)
+    video_4 = create(:video, tutorial: tutorial_2, position: 2)
     video_2 = create(:video, tutorial: tutorial_1, position: 2)
     video_3 = create(:video, tutorial: tutorial_2, position: 1)
-    video_4 = create(:video, tutorial: tutorial_2, position: 2)
+    video_1 = create(:video, tutorial: tutorial_1, position: 1)
 
     user_video_1 = create(:user_video, user: user, video: video_1)
     user_video_2 = create(:user_video, user: user, video: video_2)
@@ -31,14 +31,11 @@ feature"Users bookmarks" do
       expect(page).to have_content(video_1.title)
     end
 
-    within(third(".Bookmark")) do
-      expect(page).to have_content(video_3.title)
-    end
+    expect(all(".Bookmark")[2].text).to have_content(video_3.title)
+
     # And the videos should be ordered by their position
 
-    within(second(".Bookmark")) do
-      expect(page).to have_content(video_2.title)
-    end
+    expect(all(".Bookmark")[1].text).to have_content(video_2.title)
 
   end
 end
