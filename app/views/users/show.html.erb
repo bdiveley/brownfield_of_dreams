@@ -26,7 +26,7 @@
         <li ><a href="<%=follower.html_url%>"
            class="login"><%= follower.login %></a>
            <% if follower.saved_user? %>
-            (<%= link_to "Add Friend", friendship_path(:friend_id => follower.id), method: :post %>)</li>
+            (<%= link_to "Add Friend", friendship_path(:friend_id => follower.id), action: :post %>)</li>
           <% end %>
         <% end %>
       </ul>
@@ -38,7 +38,7 @@
         <% @facade.following.each do |follow| %>
           <li ><a href="<%=follow.html_url%>" class="follow_login"><%= follow.login %></a>
             <% if follow.saved_user? %>
-             (<%= link_to "Add Friend", friendship_path(friend_id: follow.id), method: :post %>)</li>
+             (<%= link_to "Add Friend", friendship_path(friend_id: follow.id), action: :post %>)</li>
            <% end %>
           </li>
         <% end %>
