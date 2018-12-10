@@ -43,11 +43,15 @@ class UserFacade
 
   def following
     if user.token
-      search_following_result.map do |github_user|
+    search_following_result.map do |github_user|
         GitHubUser.new(github_user)
       end
     end
   end
+
+  def bookmarks
+    Video.user_videos(user)
+  end 
 
   private
   attr_reader :user
