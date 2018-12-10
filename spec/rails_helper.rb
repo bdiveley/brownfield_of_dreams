@@ -63,7 +63,17 @@ def stub_user_two_github_api_call
   to_return(body: File.read("./spec/fixtures/user_two.json"))
 end
 
-def stub_github_users_api_call
+def stub_github_followers_api_call
   stub_request(:get, "https://api.github.com/user/followers").
   to_return(body: File.read("./spec/fixtures/github_user.json"))
+end
+
+def stub_github_following_api_call
+  stub_request(:get, "https://api.github.com/user/following").
+  to_return(body: File.read("./spec/fixtures/github_user.json"))
+end
+
+def stub_omniauth
+  OmniAuth.config.test_mode = true
+  OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new( {"provider" => "github","credentials" => {"token" => "123456"}})
 end
