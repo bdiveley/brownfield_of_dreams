@@ -9,7 +9,6 @@ class User < ApplicationRecord
   has_secure_password
 
   def find_or_create_from_auth_hash(user, auth_hash)
-    require "pry"; binding.pry
     token = auth_hash["credentials"]["token"]
     user.update(token: token)
     user.save

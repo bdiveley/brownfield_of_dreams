@@ -2,7 +2,8 @@ require "rails_helper"
 
 feature'Register user' do
   scenario 'they can see all followers on their dashboard' do
-    stub_github_users_api_call
+    stub_github_followers_api_call
+    stub_github_following_api_call
 
     user = create(:user)
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
