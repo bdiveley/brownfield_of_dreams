@@ -35,6 +35,12 @@ class UserFacade
     end
   end
 
+  def friends
+    user.friendships.map do |friendship|
+      User.find_by(id: friendship.friend_id)
+    end
+  end
+
   def following
     if user.token
       search_following_result.map do |github_user|

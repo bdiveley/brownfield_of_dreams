@@ -23,7 +23,11 @@
       <h1>Followers</h1>
       <ul class="followers">
         <% @facade.followers.each do |follower| %>
-          <li ><a href="<%=follower.html_url%>" class="login"><%= follower.login %></a></li>
+        <li ><a href="<%=follower.html_url%>"
+           class="login"><%= follower.login %></a>
+           <% if follower.saved_user? %>
+            (<%= link_to "Add Friend", friendship_path(:friend_id => follower.id), action: :post %>)</li>
+          <% end %>
         <% end %>
       </ul>
     <% end %>
@@ -32,9 +36,20 @@
       <h1>Following</h1>
       <ul class="following">
         <% @facade.following.each do |follow| %>
-          <li ><a href="<%=follow.html_url%>" class="follow_login"><%= follow.login %></a></li>
+          <li ><a href="<%=follow.html_url%>" class="follow_login"><%= follow.login %></a>
+            <% if follow.saved_user? %>
+             (<%= link_to "Add Friend", friendship_path(friend_id: follow.id), action: :post %>)</li>
+           <% end %>
+          </li>
         <% end %>
       </ul>
     <% end %>
+
+    <h1>Friends</h1>
+    <ul class="friends">
+      <% @facade.friends.each do |friend| %>
+      <li><%= friend.first_name %> <%= friend.last_name %></li>
+      <% end %>
+    </ul>
   </section>
 </section>
