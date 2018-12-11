@@ -11,8 +11,10 @@
   <section>
     <h1>Bookmarked Segments</h1>
     <ul class="Bookmarks">
-      <% @facade.bookmarks.each do |bookmark| %>
-        <li class="Bookmark"><%= bookmark.title %></li>
+      <% @facade.bookmarks.each do |video| %>
+        <li class="Videos"><%= video.tutorial_title %></li>
+        <li class="Videos"><%= video.title %></li>
+        <li class="Videos"><%= video.position %></li>
       <% end  %>
     </ul>
     <% if @facade.repos %>
