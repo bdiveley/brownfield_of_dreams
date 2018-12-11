@@ -10,10 +10,9 @@ describe 'Visitor' do
       @video2 = create(:video, tutorial_id: @tutorial1.id)
       @video3 = create(:video, tutorial_id: @tutorial2.id)
       @video4 = create(:video, tutorial_id: @tutorial2.id)
-
-      visit root_path
     end
       it 'can see a list of tutorials that are not classroom_content tutorials' do
+      visit root_path
       expect(page).to have_css('.tutorial', count: 1)
 
       within(first('.tutorials')) do
@@ -26,6 +25,7 @@ describe 'Visitor' do
       end
     end
     it 'can see a list of tutorials that are not classroom_content and filtered by tags' do
+      visit root_path
       click_on "BDD"
 
       expect(page).to have_content(@tutorial2.title)
