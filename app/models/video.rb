@@ -6,7 +6,9 @@ class Video < ApplicationRecord
   belongs_to :tutorial
 
   def self.user_videos(user)
-    joins(:user_videos)
+    select("videos.* , tutorials.title as tutorial_title")
+    .joins(:user_videos)
+    .joins(:tutorial)
     .order(:tutorial_id, :position)
     .where("user_videos.user_id = #{user.id}")
     .limit(8)
