@@ -11,6 +11,11 @@ RSpec.describe Video, type: :model do
     it {should belong_to(:tutorial)}
   end
 
+  describe "Validations" do
+    it { is_expected.to validate_presence_of(:position)}
+    it { is_expected.to validate_numericality_of(:position).is_greater_than_or_equal_to(0) }
+  end
+
   describe "Class Methods" do
     it "return bookmark videos by user" do
       user = create(:user)
@@ -31,4 +36,6 @@ RSpec.describe Video, type: :model do
       expect(Video.user_videos(user)).to eq(expected)
     end
   end
+
+  describe ""
 end
