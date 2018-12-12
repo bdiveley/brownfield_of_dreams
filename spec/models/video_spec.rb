@@ -37,5 +37,13 @@ RSpec.describe Video, type: :model do
     end
   end
 
-  describe ""
+  describe "Specials Cases" do
+    it 'should run a task if any value for position is save in the database' do
+      create_list(:video, 5)
+      video = create(:video, position: nil)
+
+      expect(Video.all.id).to eq(6)
+    end
+  end
+
 end
