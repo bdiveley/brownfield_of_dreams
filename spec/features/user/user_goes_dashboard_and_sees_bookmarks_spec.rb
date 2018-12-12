@@ -27,15 +27,15 @@ feature"Users bookmarks" do
     # Then I should see a list of all bookmarked segments under the Bookmarked Segments section
     expect(page).to have_content("Bookmarked Segments")
     # And they should be organized by which tutorial they are a part of
-    within(first(".Bookmark")) do
+    within(first(".Video")) do
       expect(page).to have_content(video_1.title)
     end
 
-    expect(all(".Bookmark")[2].text).to have_content(video_3.title)
+    expect(all(".Video")[2].text).to have_content(video_3.title)
 
     # And the videos should be ordered by their position
 
-    expect(all(".Bookmark")[1].text).to have_content(video_2.title)
+    expect(all(".Video")[1].text).to have_content(video_2.title)
 
   end
 end
