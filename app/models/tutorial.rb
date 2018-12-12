@@ -10,5 +10,4 @@ class Tutorial < ApplicationRecord
       Tutorial.where(classroom: false)
     end
   end
-
 end

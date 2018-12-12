@@ -12,9 +12,7 @@
     <h1>Bookmarked Segments</h1>
     <ul class="Bookmarks">
       <% @facade.bookmarks.each do |video| %>
-        <li class="Videos"><%= video.tutorial_title %></li>
-        <li class="Videos"><%= video.title %></li>
-        <li class="Videos"><%= video.position %></li>
+        <li class="Video">Tutorial Name: <%= video.tutorial_title %> | Video: <%= video.title %>| Position: <%= video.position %></li>
       <% end  %>
     </ul>
     <% if @facade.repos %>
