@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'rake'
 
 RSpec.describe Video, type: :model do
   describe 'validations' do
@@ -9,6 +10,11 @@ RSpec.describe Video, type: :model do
     it {should have_many(:user_videos)}
     it {should have_many(:users).through(:user_videos)}
     it {should belong_to(:tutorial)}
+  end
+
+  describe "Validations" do
+    it { is_expected.to validate_presence_of(:position)}
+    it { is_expected.to validate_numericality_of(:position).is_greater_than_or_equal_to(0) }
   end
 
   describe "Class Methods" do
@@ -31,4 +37,20 @@ RSpec.describe Video, type: :model do
       expect(Video.user_videos(user)).to eq(expected)
     end
   end
+  # Started to work on the test for the rake task but we couln't invoke it in the test
+  # describe "Specials Cases" do
+  #   it 'should run a task if any value for position is save in the database' do
+  #     tutorial_1 = create(:tutorial)
+  #     create(:video, tutorial: tutorial_1)
+  #     create(:video, tutorial: tutorial_1, position: 1)
+  #     create(:video, tutorial: tutorial_1, position: 2)
+  #
+  #     require "pry"; binding.pry
+  #
+  #     Rake::Task["video_position:correct_nil"].invoke
+  #
+  #     expect(Video.first.position).to eq(3)
+  #   end
+  # end
+
 end
