@@ -19,6 +19,10 @@ class UserFacade
     user.email
   end
 
+  def status
+    user.status
+  end
+  
   def repos
     if user.token
       search_repo_result[0..4].map do |repo_data|
@@ -51,7 +55,7 @@ class UserFacade
 
   def bookmarks
     Video.user_videos(user)
-  end 
+  end
 
   private
   attr_reader :user

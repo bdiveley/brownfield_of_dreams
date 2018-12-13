@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  post '/notification', to: 'notifications#create'
+  get '/notification', to: 'notifications#create'
+
   get '/github', to: redirect("/auth/github"), as: '/github'
   get '/auth/github/callback', to: 'users#update'
 
@@ -44,6 +47,7 @@ Rails.application.routes.draw do
   get '/video', to: 'video#show'
 
   resources :users, only: [:new, :create, :update, :edit]
+  get '/activation/users', to: "activation/users#update"
 
   resources :tutorials, only: [:show, :index] do
     resources :videos, only: [:show, :index]
