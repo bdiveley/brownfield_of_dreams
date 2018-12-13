@@ -45,5 +45,17 @@ describe GitHubService do
         end
       end
     end
+
+    context "invite" do
+      it "should return a hashes" do
+        VCR.use_cassette("github__cassette") do
+          service = GitHubService.new({token: "#{ENV["Github_Token"]}", handle: "bdiveley"})
+
+          expect(service.find_email).to be_a(Hash)
+          expect(service.find_email).to have_key(:email)
+          expect(service.find_email).to have_key(:name)
+        end
+      end
+    end
   end
 end
