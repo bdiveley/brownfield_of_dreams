@@ -11,9 +11,7 @@ class UsersController < ApplicationController
     user = User.create(user_params)
     if user.save
       session[:user_id] = user.id
-      flash[:notice] = "Logged in as #{user.first_name} #{user.last_name}"
-      flash[:error] = "This account has not yet been activated. Please check your email."
-      redirect_to dashboard_path
+      redirect_to notification_path
     else
       flash[:error] = 'Username already exists'
       render :new
@@ -21,7 +19,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    current_user.find_or_create_from_auth_hash(current_user, auth_hash)
+      current_user.find_or_create_from_auth_hash(current_user, auth_hash)
     redirect_to dashboard_path
   end
 
@@ -34,5 +32,4 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:email, :first_name, :last_name, :password)
   end
-
 end
