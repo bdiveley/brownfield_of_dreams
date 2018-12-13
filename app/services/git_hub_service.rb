@@ -16,6 +16,10 @@ class GitHubService
     get_json("/user/following")
   end
 
+  def find_email
+    user_info = get_json("/users/#{@filter[:handle]}")
+  end
+
   private
 
   def get_json(url)

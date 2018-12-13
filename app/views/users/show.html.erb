@@ -2,12 +2,13 @@
   <h1> <%= @facade.first_name %>'s Dashboard </h1>
   <div class="Status">
     <% if @facade.status %>
-      <h2> "Status: Active" </h2>
+      <p> "Status: Active" </p>
     <% end  %>
   </div>
 
   <%= button_to 'Log Out', logout_path, method: 'delete', class: "btn btn-primary mb1 bg-teal" %>
   <%= button_to 'Connect to Github', github_path, method: 'get', class: 'btn btn-primary' %>
+  <%= button_to 'Send an Invite', invite_path, method: 'get', class: "btn btn-primary mb1 bg-teal" %>
   <h3>Account Details</h3>
   <ul>
     <li> <%= @facade.first_name  %> <%= @facade.last_name %> </li>

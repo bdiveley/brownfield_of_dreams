@@ -3,8 +3,8 @@ require 'rails_helper'
 describe 'Visitor' do
   describe 'on the home page' do
     before(:each) do
-      @tutorial1 = create(:tutorial, classroom: true, tag_list: ["BDD"])
-      @tutorial2 = create(:tutorial, classroom: false, tag_list: ["BDD"])
+      @tutorial1 = create(:tutorial, classroom: true, tag_list: ["BDD"], description: "description_1")
+      @tutorial2 = create(:tutorial, classroom: false, tag_list: ["BDD"], description: "description_2")
 
       @video1 = create(:video, tutorial_id: @tutorial1.id)
       @video2 = create(:video, tutorial_id: @tutorial1.id)

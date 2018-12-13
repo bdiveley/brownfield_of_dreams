@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get '/github', to: redirect("/auth/github"), as: '/github'
   get '/auth/github/callback', to: 'users#update'
 
+  get '/invite', to: 'invite#new'
+  post '/invite', to: 'invite#create'
   namespace :api do
     namespace :v1 do
       resources :tutorials, only:[:show, :index]

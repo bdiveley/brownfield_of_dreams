@@ -51,6 +51,7 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
 
   config.filter_rails_from_backtrace!
+  config.before{ ActionMailer::Base.deliveries.clear }
 end
 
 def stub_github_api_call
@@ -71,6 +72,16 @@ end
 def stub_github_following_api_call
   stub_request(:get, "https://api.github.com/user/following").
   to_return(body: File.read("./spec/fixtures/github_user.json"))
+end
+
+def stub_github_invite_api_call
+  stub_request(:get, "https://api.github.com/users/bdiveley").
+  to_return(body: File.read("./spec/fixtures/invite.json"))
+end
+
+def stub_github_invite_not_found_api_call
+  stub_request(:get, "https://api.github.com/users/El_Vago_de_al_lado").
+  to_return(body: File.read("./spec/fixtures/invite_not_found.json"))
 end
 
 def stub_omniauth

@@ -1,0 +1,7 @@
+
+<%= form_tag :invite, method: :post, class: "form-inline" do  %>
+  <div class="form_group seach-field">
+    <%= text_field_tag :handle, "A VALID GITHUB HANDLE", class: "form-control" %>
+    <%= submit_tag "Send Invite", class: "btn btn-primary" %>
+  </div>
+<% end %>

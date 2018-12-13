@@ -29,7 +29,6 @@ feature'non-validated user' do
 
     expect(mail.first.body.encoded).to match("Visit here to activate your account.")
 
-    # expect(mail.first.body.encoded).to match("http://localhost:3000/activation/users/#{user.id}?status=true")
 
     visit "http://localhost:3000/activation/users?status=true&activation=#{user.activation_digest}&email=#{user.email}"
 
