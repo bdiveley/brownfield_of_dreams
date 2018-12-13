@@ -1,4 +1,7 @@
+require 'securerandom'
+
 class User < ApplicationRecord
+  before_create :random_generator
   has_many :user_videos
   has_many :videos, through: :user_videos
   has_many :friendships
@@ -16,5 +19,10 @@ class User < ApplicationRecord
     user.update(token: token)
     user.update(github_id: github_id)
     user.save
+  end
+
+private
+  def random_generator
+    self.activation_digest = SecureRandom.uuid
   end
 end

@@ -7,6 +7,7 @@ FactoryBot.define do
     role { :default }
     status { true }
     token { ENV['Github_Token'] }
+    activation_digest {'238972938dvwd'}
   end
 
   factory :admin, parent: :user do

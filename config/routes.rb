@@ -47,7 +47,7 @@ Rails.application.routes.draw do
   get '/video', to: 'video#show'
 
   resources :users, only: [:new, :create, :update, :edit]
-  get '/activation/users/:id', to: "activation/users#update"
+  get '/activation/users', to: "activation/users#update"
 
   resources :tutorials, only: [:show, :index] do
     resources :videos, only: [:show, :index]

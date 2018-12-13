@@ -20,7 +20,7 @@ feature'non-validated user' do
     fill_in 'user[password]', with: password
     fill_in 'user[password_confirmation]', with: password
 
-    click_on'Create Account'
+    click_on 'Create Account'
 
     user = User.last
 
@@ -31,7 +31,7 @@ feature'non-validated user' do
 
     # expect(mail.first.body.encoded).to match("http://localhost:3000/activation/users/#{user.id}?status=true")
 
-    visit "http://localhost:3000/activation/users/#{user.id}?status=true"
+    visit "http://localhost:3000/activation/users?status=true&activation=#{user.activation_digest}&email=#{user.email}"
 
     expect(current_path).to eq(login_path)
 
@@ -45,7 +45,5 @@ feature'non-validated user' do
     within(".Status") do
       expect(page).to have_content("Status: Active")
     end
-
-
   end
 end
