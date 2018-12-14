@@ -28,12 +28,8 @@ describe 'vister can create an account', :js do
 
     click_on'Create Account'
 
-    expect(current_path).to eq(dashboard_path)
+    expect(current_path).to eq(login_path)
 
-    expect(page).to have_content(email)
-    expect(page).to have_content(first_name)
-    expect(page).to have_content(last_name)
-    expect(page).to_not have_content('Sign In')
 
   end
   it ' visits the root and registers' do
@@ -59,7 +55,7 @@ describe 'vister can create an account', :js do
 
     click_on'Create Account'
 
-    expect(current_path).to eq(dashboard_path)
+    expect(current_path).to eq(login_path)
 
     expect(page).to have_content("Logged in as #{first_name} #{last_name}")
 
