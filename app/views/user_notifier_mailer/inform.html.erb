@@ -1,1 +1,1 @@
-<%= link_to "Visit here to activate your account", activation_users_url(@user.activation_digest, @user.email), method: :get %>
+<%= link_to "Visit here to activate your account", activation_users_url(activation: @user.activation_digest, email: @user.email), method: :get %>
