@@ -3,5 +3,5 @@ class AdminDashboardFacade
     Tutorial.all
   end
 
-  # test
+  # testing
 end
